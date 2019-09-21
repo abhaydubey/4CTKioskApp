@@ -1,0 +1,20 @@
+
+.card-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > * {
+        display: flex;
+    }
+}
+
+.quantity {
+    margin: 0 10px;
+    text-align: center;
+}
+
+ion-avatar { 
+    width: 60px;  
+    height: 60px;  
+}

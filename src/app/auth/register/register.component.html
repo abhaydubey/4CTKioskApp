@@ -1,0 +1,78 @@
+<div class="page-header">
+  <h1>{{ isRegister ? 'Create Account' : 'Login'}}</h1>
+</div>
+
+
+
+<div class="content">
+  <div *ngIf="errorMsg" style="text-align: center;"><small color="danger">{{errorMsg}}</small></div>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <ul class="ion-no-margin ion-no-padding">
+
+
+          <li *ngIf="isRegister" [formGroup]="form">
+              <label position="stacked">First Name<p color="danger">*</p>
+              </label>
+              <input type="text" formControlName="firstName" />
+              <small color="danger" *ngIf="firstName.touched && firstName.dirty && firstName.invalid">Please enter
+                  first
+                  name</small>
+          </li>
+
+          <li *ngIf="isRegister" [formGroup]="form">
+              <label position="stacked">Last Name<p color="danger">*</p>
+              </label>
+              <input type="text" formControlName="lastName" />
+              <small color="danger" *ngIf="lastName.touched && lastName.dirty && lastName.invalid">Please enter last
+                  name</small>
+          </li>
+
+          <li *ngIf="isRegister" [formGroup]="form">
+              <label position="stacked">Phone Number<p color="danger">*</p>
+              </label>
+              <input type="number" formControlName="phone" />
+              <small color="danger" *ngIf="phone.touched && phone.value && !validatePhone()">Please enter 10 digit
+                  mobile
+                  number</small>
+          </li>
+
+          <li [formGroup]="form">
+              <label position="stacked">Email ID<p color="danger">*</p>
+              </label>
+              <input type="email" formControlName="email" autocomplete="false" />
+              <small color="danger" *ngIf="email.touched && email.dirty && email.invalid">Invalid Email ID</small>
+          </li>
+
+
+
+          <li [formGroup]="form">
+              <label position="stacked">Password<p color="danger">*</p>
+              </label>
+              <input type="password" formControlName="password" />
+              <small color="danger" *ngIf="password.touched && password.dirty && !passwordMatches()">{{isRegister ? 
+          'Passwords don\'t match' : 'Please enter password'}}</small>
+          </li>
+
+          <li *ngIf="isRegister" [formGroup]="form">
+              <label position="stacked">Confirm Password<p color="danger">*</p>
+              </label>
+              <input type="password" formControlName="confirmPassword" />
+              <small color="danger"
+                  *ngIf="confirmPassword.touched && confirmPassword.dirty && !passwordMatches()">Passwords
+                  don't match</small>
+          </li>
+
+
+      </ul>
+
+      <div class="ion-padding">
+          <button type="button" class="btn btn-primary" type="submit" [disabled]="!formValid()">
+              {{ isRegister ? 'Create Account' : 'Login'}}
+          </button>
+          <button type="button" class="btn btn-primary" (click)="loginOrRegister()">
+              <small>{{ isRegister ? 'Registered user? ' : 'New user? '}}&nbsp;&nbsp;</small>
+              {{ isRegister ? 'Login' : 'Register'}}
+          </button>
+      </div>
+  </form>
+</div>

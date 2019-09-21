@@ -5,7 +5,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 import { BehaviorSubject } from 'rxjs';
 const AUTH_DETAILS = 'authetication';
 import * as $ from 'jquery';
-import { RegisterComponent } from './../register/register.component';
+import { RegisterComponent } from '../auth/register/register.component';
 @Injectable({
   providedIn: 'root'
 })

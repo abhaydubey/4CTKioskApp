@@ -1,1 +1,92 @@
-<p>cart works!</p>
+<div class="content">
+    <div *ngIf="groupedItems.length == 0">
+        <img src="assets/images/no-image.png" />
+        <div>
+          <h4>No items in cart</h4>
+          <h3>Add ites to cart from cafeteria section.</h3>
+        </div>
+    </div>
+      <!-- <ion-card *ngIf="groupedItems.length > 0">
+        <ion-button slot="center" float-right (click)="placeOrder()" [disabled]="totalPrice == 0">
+          Order items from all {{groupedItems.length}} vendor(s) for {{totalPrice | currency: 'INR'}}
+        </ion-button>
+      </ion-card> -->
+  <div *ngIf="groupedItems.length > 0" pager="true" >
+  <div *ngFor="let group of groupedItems;">
+      <div>
+        <div>
+          <span name="card" slot="start"></span>
+          <label>Pay to <strong>{{group.name}}</strong></label>
+          <!-- <ion-button fill="outline" slot="end">Details</ion-button> -->
+        </div>
+        <div>
+          <h4><strong>{{group.total | currency: 'INR'}}</strong></h4>
+          <h3>Orders will be placed to each vendor separately.</h3>
+        </div>
+        <div class="content">
+            <div>
+                <ul>
+                  <li *ngFor="let cartItem of group.items" class="product-item">
+                    <span slot="start">
+                      <img src="{{getFullImagePath(cartItem.item)}}">
+                    </span>        
+                    <label>
+                      <h2>{{cartItem.item.itemName}}</h2>
+                      <p>{{cartItem.item.itemPrice | currency: 'INR'}}</p>
+                    </label>
+        
+                    <!-- <div slot="end" class="card-buttons"> -->
+                      <button  (click)="removeFromCart(cartItem.item)">
+                        <span name="remove"></span>
+                      </button>        
+                      <label class="quantity">
+                        {{cartItem.count}}
+                      </label>
+        
+                      <button shape="round" fill="outline" (click)="addToCart(cartItem.item)">
+                        <!-- <ion-icon name="add"></ion-icon> -->
+                      </button>
+                    <!-- </div> -->        
+                    </li>
+                </ul>
+            </div>
+              <div>
+                  <div align-items-center>                   
+                    <span>
+                      <button float-right (click)="placeOrderForVendorID(group.id)" [disabled]="group.total == 0">
+                        Proceed to pay {{group.total | currency: 'INR'}}
+                      </button>
+                    </span>
+                </div>
+            </div> 
+            </div>
+        </div>
+    </div>   
+</div>
+</div>
+<div>
+
+    <button (click)="checkout()">Checkout</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,12 @@
-
-
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
 })
-export class SettingComponent implements OnInit {
+export class SettingsComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -20,4 +18,3 @@ export class SettingComponent implements OnInit {
   }
 
 }
-

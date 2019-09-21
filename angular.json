@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "KioskApp": {
+    "KAPP": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/KioskApp",
+            "outputPath": "dist/KAPP",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,6 +54,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -62,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "KioskApp:build"
+            "browserTarget": "KAPP:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "KioskApp:build:production"
+              "browserTarget": "KAPP:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "KioskApp:build"
+            "browserTarget": "KAPP:build"
           }
         },
         "test": {
@@ -110,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "KioskApp:serve"
+            "devServerTarget": "KAPP:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "KioskApp:serve:production"
+              "devServerTarget": "KAPP:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "KioskApp"
+  "defaultProject": "KAPP"
 }

@@ -1,14 +1,14 @@
-
-
 import { HomeComponent } from '../home/home.component';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-
+//import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']})
+  templateUrl: 'cart.component.html',
+  styleUrls: ['cart.component.scss']
+})
 export class CartComponent implements OnInit, AfterViewInit {
 
   cartItems = [];
@@ -25,7 +25,9 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.refreshCart();
   }
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService,
+    public router: Router) {
+    //public toastController: ToastController) {
     // this.groupedProducts = [{
     //   group: 1,
     //   products: [{
@@ -47,6 +49,11 @@ export class CartComponent implements OnInit, AfterViewInit {
       that.refreshCart();
     }, true);
   }
+
+checkout(){
+  alert("Place Order");
+  this.router.navigateByUrl('checkout');
+}
 
   refreshCart() {
     let that = this;
@@ -144,12 +151,14 @@ export class CartComponent implements OnInit, AfterViewInit {
       "PAYMENT_TYPE" : "CASH",
       "NOTES": "COD_ORDER"
     }, function (res) {
+
       // let toast = that.toastController.create({
       //   message: 'Your order is placed successfully!!',
       //   duration: 3000
       // }).then(toast => {
       //   toast.present();
       // });
+
       that.refreshCart();
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
     }, function (error) {
@@ -162,4 +171,3 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
 }
-

@@ -1,39 +1,39 @@
 <header no-border>
-    <div mode="ios" color="primary">
-        <title>
-            Cafeteria
-        </title>
-        <button slot="start">
-            <button autoHide="false"></button>
-        </button>
-    </div>
+  <div mode="ios" color="primary">
+      <title>
+          Cafeteria
+      </title>
+      <button slot="start">
+          <button autoHide="false"></button>
+      </button>
+  </div>
 </header>
 
 
-<router-outlet name="child"></router-outlet>
+<router-outlet></router-outlet>
 
 <div class="nav nav-tabs">
 
-    <header no-border>
+  <header no-border>
 
-    </header>
+  </header>
 
-    <div slot="bottom">
-        <button tab="account">
-            <span name="heart"></span>
-            <label>Favourites</label>
-        </button>
+  <div slot="bottom">
+      <button tab="account">
+          <span name="heart"></span>
+          <label>Favourites</label>
+      </button>
 
-        <button tab="home">
-            <span name="home"></span>
-            <label>Home</label>
-        </button>
+      <button tab="home" (click)="goHome()">
+          <span name="home"></span>
+          <label>Home</label>
+      </button>
 
-        <button (click)="goToCart()">
-            <span name="cart"></span>
-            <label>Cart</label>
-            <span *ngIf="cartItems.length > 0">{{cartCount}}</span>
-        </button>
-    </div>
+      <button (click)="goToCart()">
+          <span name="cart"></span>
+          <label>Cart</label>
+          <span *ngIf="cartItems.length > 0">{{cartCount}}</span>
+      </button>
+  </div>
 
 </div>

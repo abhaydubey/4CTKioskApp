@@ -1,0 +1,31 @@
+<div class="uk-container mt-5">
+    <div class="uk-flex-center" uk-grid>
+      <div class="uk-width-1-2@s">
+        <div class="uk-card uk-card-default uk-padding">
+          <p class="uk-text-lead">
+            Verify your phone.
+          </p>
+          <div class="row align-items-center">
+            <div>
+              <p class="lead">
+                Complete form below to verify phone number
+              </p>
+              <hr class="my-4">
+              <div id="recaptcha-container"></div>
+              <form class="" #formData='ngForm' (ngSubmit)="onSubmit(formData.value)">
+                <div class="uk-margin">
+                  <input type="number" name="phone_number" class="uk-input uk-form-large" [ngModel]="phone_number" placeholder="e.g +2330269201707"
+                    required autofocus>
+                </div>
+                <button type="submit" class="uk-button uk-button-primary" [disabled]="formData.invalid || busy">
+                  <span *ngIf="busy">Hold on a second</span>
+                  <span *ngIf="!busy">Continue</span>
+                </button>
+                <a [routerLink]="['/']" class="uk-button uk-button-default uk-button-small">Cancel</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

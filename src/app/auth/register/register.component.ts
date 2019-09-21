@@ -1,22 +1,21 @@
 import { Router } from '@angular/router';
-import { AuthenticationService } from './../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import * as $ from 'jquery';
 const passwordRegEx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-z\d$@$!%*?&#].{8,}';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   isRegister: boolean = false;
   serverURL: string = 'https://equinoxcafeteria.azurewebsites.net';
- // serverURL: string = 'http://localhost:8080/cafeteria';
+  //serverURL: string = 'http://localhost:8080/cafeteria';
   errorMsg = "";
 
   constructor(private authService: AuthenticationService, private router: Router) {
@@ -122,7 +121,7 @@ export class RegisterComponent implements OnInit {
     } else {
       const accessToken = btoa(this.form.value.email + ':' + this.form.value.password);
       this.authService.login(this.serverURL, accessToken, function (resp) {
-        that.router.navigateByUrl('tabs/home');
+        that.router.navigateByUrl('tabs/tabs/home');
       }, function (xhr, ajaxOptions, thrownError) {
         if('401' == xhr.status) {
           that.errorMsg = "Invalid credentials! Error code: "+xhr.status;
@@ -147,4 +146,3 @@ export class RegisterComponent implements OnInit {
     this.isRegister = !this.isRegister;
   }
 }
-

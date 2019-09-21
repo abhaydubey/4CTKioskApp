@@ -1,13 +1,12 @@
-
 import { Component, OnInit } from '@angular/core';
-
+//import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  templateUrl: 'tabs.component.html',
+  styleUrls: ['tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
 
@@ -19,8 +18,6 @@ export class TabsComponent implements OnInit {
     document.addEventListener('cartChange', function() {
       that.loadCartItems();
     }, true);
-
-    
     this.loadCartItems();
   }
 
@@ -37,7 +34,7 @@ export class TabsComponent implements OnInit {
   }
 
   constructor(private authService: AuthenticationService,
-   
+   // public menuCtrl: MenuController,
     public router: Router) {
     console.log('TODO.TabsPage.constructor');
   }
@@ -48,10 +45,12 @@ export class TabsComponent implements OnInit {
     // this.goHome();
   }
 
+  goHome() {
+    this.router.navigateByUrl( 'tabs/tabs/home' );
+  }
 
   goToCart() {
     document.dispatchEvent(new CustomEvent('refreshCart', { detail: {} }));
-    this.router.navigateByUrl( 'tabs/cart' );
+    this.router.navigateByUrl( 'tabs/tabs/cart' );
   }
 }
-

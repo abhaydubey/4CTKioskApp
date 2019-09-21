@@ -1,97 +1,97 @@
 <header translucent *ngIf="isInItems() || isInVendors()">
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button (click)="customBackButtonClick()"><span name="arrow-round-back"></span></button>
-            <div class="col">
-                <input class="form-control form-control-lg form-control-borderless" type="search"
-                    placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
-            </div>
-        </div>
-    </div>
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button (click)="customBackButtonClick()"><span name="arrow-round-back"></span></button>
+          <div class="col">
+              <input class="form-control form-control-lg form-control-borderless" type="search"
+                  placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
+          </div>
+      </div>
+  </div>
 </header>
 
 <div class="content">
-    <ul>
-        <li *ngFor="let item of items" class="product-item">
-            <div slot="start">
-                <img src="{{getFullImagePath(item)}}">
-            </div>
-            <label>
-                <h2>{{item.itemName}}</h2>
-                <p>{{item.itemPrice | currency: 'INR'}}</p>
-                <!-- <button ion-button tooltip="I'm a tooltip below a button" positionV="bottom" arrow><span name="information-circle"></span></button> -->
-            </label>
-            <div *ngIf="isInCart(item)" slot="end" class="card-buttons">
-                <button shape="round" fill="outline" (click)="removeFromCart(item)">
-                    <span class="remove"></span>
-                </button>
-                <p class="quantity">
-                    {{item.cartCount}}
-                </p>
-                <button shape="round" fill="outline" (click)="addToCart(item)">
-                    <span class="add"></span>
-                </button>
-            </div>
-            <button *ngIf="!isInCart(item)" (click)="addToCart(item)">Add to Cart</button>
-        </li>
-    </ul>
+  <ul>
+      <li *ngFor="let item of items" class="product-item">
+          <div slot="start">
+              <img src="{{getFullImagePath(item)}}">
+          </div>
+          <label>
+              <h2>{{item.itemName}}</h2>
+              <p>{{item.itemPrice | currency: 'INR'}}</p>
+              <!-- <button ion-button tooltip="I'm a tooltip below a button" positionV="bottom" arrow><span name="information-circle"></span></button> -->
+          </label>
+          <div *ngIf="isInCart(item)" slot="end" class="card-buttons">
+              <button shape="round" fill="outline" (click)="removeFromCart(item)">
+                  <span class="remove"></span>
+              </button>
+              <p class="quantity">
+                  {{item.cartCount}}
+              </p>
+              <button shape="round" fill="outline" (click)="addToCart(item)">
+                  <span class="add"></span>
+              </button>
+          </div>
+          <button *ngIf="!isInCart(item)" (click)="addToCart(item)">Add to Cart</button>
+      </li>
+  </ul>
 
-    <ul *ngIf="isInVendors()">
-        <li *ngFor="let v of vendors;" (click)="selectVendor(v)">
-            <span class="start">
-                <img  class="image" src="assets/images/no-image.png">
-            </span>
-            <label>
-                <h3>{{v.fullName}}</h3>
-                <p>{{v.building}}</p>
-            </label>
-        </li>
-    </ul>
+  <ul *ngIf="isInVendors()">
+      <li *ngFor="let v of vendors;" (click)="selectVendor(v)">
+          <span class="start">
+              <img  class="image" src="assets/images/no-image.png">
+          </span>
+          <label>
+              <h3>{{v.fullName}}</h3>
+              <p>{{v.building}}</p>
+          </label>
+      </li>
+  </ul>
 
-    <ul *ngIf="isInServices()">
-        <li (click)="cafeteriaClick()">
-            <span>
-                <img class="image" src="assets/images/cafeteria.png">
-            </span>
-            <label>Cafeteria<br>
-                <small>Order food at your convenience</small>
-            </label>
-        </li>
+  <ul *ngIf="isInServices()">
+      <li (click)="cafeteriaClick()">
+          <span>
+              <img class="image" src="assets/images/cafeteria.png">
+          </span>
+          <label>Cafeteria<br>
+              <small>Order food at your convenience</small>
+          </label>
+      </li>
 
-        <li>
-            <span class="start">
-                <img src="assets/images/starbucks.jpg">
-            </span>
-            <label>Health Bar<br>
-                <small>Health bar description</small>
-            </label>
-        </li>
+      <li>
+          <span class="start">
+              <img src="assets/images/starbucks.jpg">
+          </span>
+          <label>Health Bar<br>
+              <small>Health bar description</small>
+          </label>
+      </li>
 
-        <li href="olacabs://app/launch?">
-            <span class="start">
-                <img src="assets/images/taxi.jpg">
-            </span>
-            <label>Cab Services<br>
-                <small>Click here for cab Services</small>
-            </label>
-        </li>
+      <li href="olacabs://app/launch?">
+          <span class="start">
+              <img src="assets/images/taxi.jpg">
+          </span>
+          <label>Cab Services<br>
+              <small>Click here for cab Services</small>
+          </label>
+      </li>
 
-        <li>
-            <span class="start">
-                <img src="assets/images/starbucks.jpg">
-            </span>
-            <label>Starbucks<br>
-                <small>Starbucks description</small>
-            </label>
-        </li>
+      <li>
+          <span class="start">
+              <img src="assets/images/starbucks.jpg">
+          </span>
+          <label>Starbucks<br>
+              <small>Starbucks description</small>
+          </label>
+      </li>
 
-        <li>
-            <span class="start">
-                <img src="assets/images/cultfit.jpg"> </span>
-            <label>Cult.fit<br>
-                <small>Cult.fit</small>
-            </label>
-        </li>
-    </ul>
+      <li>
+          <span class="start">
+              <img src="assets/images/cultfit.jpg"> </span>
+          <label>Cult.fit<br>
+              <small>Cult.fit</small>
+          </label>
+      </li>
+  </ul>
 
 </div>
