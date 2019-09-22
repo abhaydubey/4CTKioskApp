@@ -1,74 +1,114 @@
-<div class="content">
-    <div *ngIf="groupedItems.length == 0">
-        <img src="assets/images/no-image.png" />
-        <div>
-          <h4>No items in cart</h4>
-          <h3>Add ites to cart from cafeteria section.</h3>
-        </div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div *ngIf="groupedItems.length > 0">
+ <div class="c_wrap "  *ngFor="let group of groupedItems;">
+  <div class="row myrow py-4 "    >
+    <div class="overlay"></div>
+    <div class="col-2"> <img src="images/newseleted.png"></div>
+    <div class="col-8 mymiddlecol">
+      <div class="itemTxt">
+        <h2>{{group.name}}</h2>
+        <p>Meals, Healthy Food, Pulav</p>
+      </div>
     </div>
-      <!-- <ion-card *ngIf="groupedItems.length > 0">
-        <ion-button slot="center" float-right (click)="placeOrder()" [disabled]="totalPrice == 0">
-          Order items from all {{groupedItems.length}} vendor(s) for {{totalPrice | currency: 'INR'}}
-        </ion-button>
-      </ion-card> -->
-  <div *ngIf="groupedItems.length > 0" pager="true" >
-  <div *ngFor="let group of groupedItems;">
-      <div>
-        <div>
-          <span name="card" slot="start"></span>
-          <label>Pay to <strong>{{group.name}}</strong></label>
-          <!-- <ion-button fill="outline" slot="end">Details</ion-button> -->
-        </div>
-        <div>
-          <h4><strong>{{group.total | currency: 'INR'}}</strong></h4>
-          <h3>Orders will be placed to each vendor separately.</h3>
-        </div>
-        <div class="content">
-            <div>
-                <ul>
-                  <li *ngFor="let cartItem of group.items" class="product-item">
-                    <span slot="start">
-                      <img src="{{getFullImagePath(cartItem.item)}}">
-                    </span>        
-                    <label>
-                      <h2>{{cartItem.item.itemName}}</h2>
-                      <p>{{cartItem.item.itemPrice | currency: 'INR'}}</p>
-                    </label>
-        
-                    <!-- <div slot="end" class="card-buttons"> -->
-                      <button  (click)="removeFromCart(cartItem.item)">
-                        <span name="remove"></span>
-                      </button>        
-                      <label class="quantity">
-                        {{cartItem.count}}
-                      </label>
-        
-                      <button shape="round" fill="outline" (click)="addToCart(cartItem.item)">
-                        <!-- <ion-icon name="add"></ion-icon> -->
-                      </button>
-                    <!-- </div> -->        
-                    </li>
-                </ul>
+    <div class="col-2 mylastcol">
+      <div class="mytopRight ml-auto">
+        <p class="myrating text-right mt-auto mb-auto"><span><img src="images/mystar.gif" width="25"></span> 4.5</p>
+      </div>
+    </div>
+  </div>
+    <div class="itemList py-4">
+    <ul>
+      <li class="py-3">
+        <div class="row"  *ngFor="let cartItem of group.items">
+           <div class="col-3"><span class="itemName">{{cartItem.item.itemName}}</span></div>
+          <div class="col-7 mymiddlecol">
+            <div class="number-input">
+              <button (click)="removeFromCart(cartItem.item)"></button>
+              <input class="quantity" min="0" name="quantity" value="{{cartItem.count}}" type="number">
+              <button (click)="addToCart(cartItem.item)" class="plus"></button>
             </div>
-              <div>
-                  <div align-items-center>                   
-                    <span>
-                      <button float-right (click)="placeOrderForVendorID(group.id)" [disabled]="group.total == 0">
-                        Proceed to pay {{group.total | currency: 'INR'}}
-                      </button>
-                    </span>
-                </div>
-            </div> 
-            </div>
+          </div> 
+          <div class="col-2 mylastcol"><span class="itemPrice text-center mt-auto">{{cartItem.item.itemPrice*cartItem.count | currency: 'INR'}}</span></div>
+         
+        
+        </div> 
+      </li>
+      
+    </ul>
+  </div>  
+
+  <div class="detailsWrap pt-3">
+    <div class="hd py-3">Bill Details</div>
+
+    <div class="hdTotal "><span>Items Total</span> <span class="line"></span><span
+        class="itemPrice text-center mt-auto">{{group.total | currency: 'INR'}}</span></div>
+  </div>
+
+  <div class="d_time my-3">
+    <div class="row d-flex">
+      <span class="">Estimated delivery time </span>
+
+      <span>25mins</span>
+    </div>
+  </div>
+
+</div> 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Checkout
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel">Select Payment</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>   
+        <div class="modal-body">
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"> Place Order </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<div>
 
-    <button (click)="checkout()">Checkout</button>
 
-</div>
 
 
 

@@ -16,6 +16,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   vendorDetails = [];
   groupedItems = [];
   totalPrice = 0;
+  isPaymentMode=false;
   slideOpts = {
     initialSlide: 0,
     speed: 400
@@ -51,8 +52,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
 checkout(){
-  alert("Place Order");
-  this.router.navigateByUrl('checkout');
+  this.isPaymentMode=true;  
 }
 
   refreshCart() {
@@ -105,6 +105,7 @@ checkout(){
     }
     this.totalPrice = tempTotalPrice;
     this.groupedItems = groupArray;
+    console.log(this.groupedItems);
   }
 
   removeFromCart(item) {
@@ -135,7 +136,7 @@ checkout(){
     for(let index = 0; index < this.groupedItems.length; index++) {
       vendorIds.push(this.groupedItems[index].id);
     }
-    alert(vendorIds);
+    //alert(vendorIds);
     this.placeOrders(vendorIds);
   }
 
@@ -147,7 +148,7 @@ checkout(){
     let that = this;
     this.authService.ajax({
       'REQ_TYPE': 'PLACE_ORDER_BY_VENDOR_ID', 
-      "VENDOR_IDS": vendorIds.toString(),
+      "VENDOR_IDS": vendorIds,
       "PAYMENT_TYPE" : "CASH",
       "NOTES": "COD_ORDER"
     }, function (res) {
@@ -168,6 +169,10 @@ checkout(){
 
   getFullImagePath(i) {
     return i.imagePath ? AuthenticationService.CONTEXT_URL + i.imagePath : 'assets/images/no-image.png';
+  }
+
+  goToPayment(){
+    
   }
 
 }

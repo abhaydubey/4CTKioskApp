@@ -1,141 +1,98 @@
 <div class="container-fluid">
+  <header translucent *ngIf="isInItems() || isInVendors()">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button (click)="customBackButtonClick()"><span name="arrow-round-back"></span></button>
+        <div class="col">
+          <input class="form-control form-control-lg form-control-borderless" type="search"
+            placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="content">
+
+    <div class="row" *ngIf="isInVendors()">
+      <div class="col-12">
+        <ul class="list-unstyled mt-4 mb-4 list-menu">
+          <li class="media my-3" *ngFor="let v of vendors;">
+
+            <span><img class="rounded" src="../../assets/images/sec-img1.png" alt="Food Paradise"></span>
+            <div class="media-body" (click)="selectVendor(v)">
+              <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
+              <h2 class="list-sub-head">{{v.building}}</h2>
+              <h3 class="text-center rating"><span class="float-left">
+                  <i class="fa fa-star"></i> 4.3</span><span>23
+                  mins</span></h3>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topSection  " *ngIf="isInServices()">
+      <div class="topLeft mr-auto">
+        <h2>Srushti Veg Restaurant</h2>
+        <p>Meals, Healthy Food, Pulav</p>
+      </div>
+      <div class="topRight ml-auto">
+        <p class="myrating text-center"><span><img src="images/mystar.gif" width="25"></span> 4.5</p>
+        <p class="mtype">Pure Veg</p>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="itemsection col-sm-6"  *ngFor="let item of items">
+        <div class="itemWrap">
+          <div class="img-wrap"><img src="{{getFullImagePath(item)}}"></div>
+          <span class="itemName">{{item.itemName}}</span>
+          <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">&#x20B9; {{item.itemPrice | currency: 'INR'}}</span>
+            
+            <span class="itemAdd ml-auto mt-auto"   *ngIf="!isInCart(item)" (click)="addToCart(item)">Add</span>
+
+            <div class="number-input">
+                <button (click)="removeFromCart(item)"></button>
+                <input class="quantity" min="0" name="quantity" value="{{item.cartCount}}" type="number">
+                <button (click)="addToCart(item)" class="plus"></button>
+              </div>
+            
+            </div>
+        </div>
+      </div>
+      
+    </div>
   
 
 
 
+  
 
+ 
+     
 
-    <header translucent *ngIf="isInItems() || isInVendors()">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button (click)="customBackButtonClick()"><span name="arrow-round-back"></span></button>
-            <div class="col">
-              <input class="form-control form-control-lg form-control-borderless" type="search"
-                placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
-            </div>
-          </div>
-        </div>
-      </header>
-
-
-
-  <div class="row" *ngIf="isInVendors()">
-    <div class="col-12">
-      <ul class="list-unstyled mt-4 mb-4 list-menu">
-        <li class="media my-3" *ngFor="let v of vendors;" >
-          
-          <span ><img class="rounded" src="../../assets/images/sec-img1.png" alt="Food Paradise"></span>
-          <div class="media-body"  (click)="selectVendor(v)">
-            <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
-            <h2 class="list-sub-head">{{v.building}}</h2>
-              <h3 class="text-center rating"><span class="float-left">
-                <i class="fa fa-star"></i> 4.3</span><span>23
-                  mins</span></h3>
-          </div>
-        
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-<div class="content">
-  <ul>
-    <li *ngFor="let item of items" class="product-item">
-      <div slot="start">
-        <img src="{{getFullImagePath(item)}}">
-      </div>
-      <label>
-        <h2>{{item.itemName}}</h2>
-        <p>{{item.itemPrice | currency: 'INR'}}</p>
-        <!-- <button ion-button tooltip="I'm a tooltip below a button" positionV="bottom" arrow><span name="information-circle"></span></button> -->
-      </label>
-      <div *ngIf="isInCart(item)" slot="end" class="card-buttons">
-        <button shape="round" fill="outline" (click)="removeFromCart(item)">
-          <span class="remove"></span>
-        </button>
-        <p class="quantity">
-          {{item.cartCount}}
-        </p>
-        <button shape="round" fill="outline" (click)="addToCart(item)">
-          <span class="add"></span>
-        </button>
-      </div>
-      <button *ngIf="!isInCart(item)" (click)="addToCart(item)">Add to Cart</button>
-    </li>
-  </ul>
-
-  <!-- <ul *ngIf="isInVendors()">
-    <li *ngFor="let v of vendors;" (click)="selectVendor(v)">
-      <span class="start">
-        <img class="image" src="assets/images/no-image.png">
-      </span>
-      <label>
-        <h3>{{v.fullName}}</h3>
-        <p>{{v.building}}</p>
-      </label>
-    </li>
-  </ul> -->
-
-  <!-- <ul *ngIf="isInServices()">
-      <li (click)="cafeteriaClick()">
-          <span>
-              <img class="image" src="assets/images/cafeteria.png">
-          </span>
-          <label>Cafeteria<br>
-              <small>Order food at your convenience</small>
-          </label>
-      </li>
-
-      <li>
-          <span class="start">
-              <img src="assets/images/starbucks.jpg">
-          </span>
-          <label>Health Bar<br>
-              <small>Health bar description</small>
-          </label>
-      </li>
-
-      <li href="olacabs://app/launch?">
-          <span class="start">
-              <img src="assets/images/taxi.jpg">
-          </span>
-          <label>Cab Services<br>
-              <small>Click here for cab Services</small>
-          </label>
-      </li>
-
-      <li>
-          <span class="start">
-              <img src="assets/images/starbucks.jpg">
-          </span>
-          <label>Starbucks<br>
-              <small>Starbucks description</small>
-          </label>
-      </li>
-
-      <li>
-          <span class="start">
-              <img src="assets/images/cultfit.jpg"> </span>
-          <label>Cult.fit<br>
-              <small>Cult.fit</small>
-          </label>
-      </li>
-  </ul> -->
 
 
   <div class="row" *ngIf="isInServices()">
     <div class="col-12">
       <div class="card-deck mycard-deck">
-        <div class="card bg-white p-2" >
-          <span  class="text-black-50" (click)="cafeteriaClick()">
+        <div class="card bg-white p-2">
+          <span class="text-black-50" (click)="cafeteriaClick()">
             <img class="card-img-top rounded" src="../../assets/images/sec-img1.png" alt="Cafeteria">
             <div class="card-body">
               <h4 class="card-title text-center">Cafeteria</h4>
@@ -143,7 +100,7 @@
           </span>
         </div>
         <div class="card bg-white p-2">
-          <span  class="text-black-50"  disabled="disabled">
+          <span class="text-black-50" disabled="disabled">
             <img class="card-img-top rounded" src="../../assets/images/sec-img2.png" alt="Health Bar">
             <div class="card-body">
               <h4 class="card-title text-center">Health Bar</h4>
@@ -176,9 +133,9 @@
             </div>
           </a>
         </div>
-       
+
       </div>
-     
+
     </div>
   </div>
 

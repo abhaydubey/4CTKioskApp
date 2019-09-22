@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title: string = 'Services';
+  title: string = 'Cafeteria';
   vendors: any = [];
   allVendors: any = [];
   items: any = [];
@@ -23,10 +23,12 @@ export class HomeComponent implements OnInit {
     this.authService.ajax({ 'REQ_TYPE': 'LOAD_CART_ITEMS' }, function (res) {
       that.cartItems = res;
     });
+
+    this.cafeteriaClick();
   }
 
   constructor(private authService: AuthenticationService, private router: Router) {
-    this.title = 'Services';
+    this.title = 'Cafeteria';
   }
 
   isInServices() {

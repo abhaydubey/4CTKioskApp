@@ -38,26 +38,6 @@
 
 </router-outlet>
 
-<div class="nav nav-tabs">
-    <header no-border>
-    </header>
 
-    <div slot="bottom">
-        <button tab="account">
-            <span name="heart"></span>
-            <label>Favourites</label>
-        </button>
-
-        <button tab="home" (click)="goHome()">
-            <span name="home"></span>
-            <label>Home</label>
-        </button>
-
-        <button (click)="goToCart()">
-            <span name="cart"></span>
-            <label>Cart</label>
-            <span *ngIf="cartItems.length > 0">{{cartCount}}</span>
-        </button>
-    </div>
-
-</div>
+<div class="itemTotal">{{cartCount}} Items |    <span class="finalPrice">175</span></div>
+<div class="myViewCart"  (click)="goToCart()">VIEW CART</div>
