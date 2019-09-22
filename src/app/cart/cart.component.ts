@@ -16,7 +16,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   vendorDetails = [];
   groupedItems = [];
   totalPrice = 0;
-  isPaymentMode=false;
+  paymentMode="Cash";
   slideOpts = {
     initialSlide: 0,
     speed: 400
@@ -51,9 +51,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     }, true);
   }
 
-checkout(){
-  this.isPaymentMode=true;  
-}
+
 
   refreshCart() {
     let that = this;
@@ -131,6 +129,7 @@ checkout(){
   }
 
   placeOrder() {
+    console.log(this.paymentMode);
     let that = this;
     let vendorIds = [];
     for(let index = 0; index < this.groupedItems.length; index++) {
@@ -162,9 +161,15 @@ checkout(){
 
       that.refreshCart();
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
+
+       alert("Your Order has been Placed Successfully");
+       setInterval(this.goToDashboard(), 10000)
     }, function (error) {
       console.log('error:' + error);
     });
+  }
+  goToDashboard(){
+    this.router.navigateByUrl("dashboard");
   }
 
   getFullImagePath(i) {

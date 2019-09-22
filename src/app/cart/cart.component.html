@@ -97,11 +97,24 @@
           </button>
         </div>
         <div class="modal-body">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Cash"  [ngModel]="paymentMode">
+                <label class="form-check-label" for="exampleRadios1">
+                  Pay By Cash
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="online"  [ngModel]="paymentMode">
+                <label class="form-check-label" for="exampleRadios2">
+                  Online
+                </label>
+              </div>
+             
          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"> Place Order </button>
+          <button type="button" class="btn btn-primary" (click)="placeOrder()"> Place Order </button>
         </div>
       </div>
     </div>
