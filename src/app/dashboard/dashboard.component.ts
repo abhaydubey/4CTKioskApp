@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
 
   cafeteriaClick(){
-    this.router.navigateByUrl('tabs/tabs/home');
+    this.router.navigateByUrl('checkout');
   }
   
 
