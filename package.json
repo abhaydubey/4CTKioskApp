@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.7",
     "@ngx-pwa/local-storage": "^8.2.2",
     "firebase": "^6.6.2",
+    "firebaseui": "^4.2.0",
     "jquery": "^3.4.1",
     "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.4.0",

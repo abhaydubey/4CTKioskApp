@@ -1,39 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+        <h1>EQUINOX</h1>
+    </a>
+    <div class="navbar-nav flex-row ml-auto">
+        <ul class="navbar-nav">
+            <div class="dropdown text-center">
+                <a class="text-center text-white" href="#" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="../../assets/images/user-icon.png" text-align="middle" alt="user images" class="user-img">
+                    <br>
+                    <h5>Account</h5>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="#" (click)= "logout()">Log Out</a>
+                </div>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+
+
 <header no-border>
-  <div mode="ios" color="primary">
-      <title>
-          Cafeteria
-      </title>
-      <button slot="start">
-          <button autoHide="false"></button>
-      </button>
-  </div>
+    <div mode="ios" color="primary">
+        <title>
+            Cafeteria
+        </title>
+        <button slot="start">
+            <button autoHide="false"></button>
+        </button>
+    </div>
 </header>
 
+<router-outlet>
 
-<router-outlet></router-outlet>
+</router-outlet>
 
 <div class="nav nav-tabs">
+    <header no-border>
+    </header>
 
-  <header no-border>
+    <div slot="bottom">
+        <button tab="account">
+            <span name="heart"></span>
+            <label>Favourites</label>
+        </button>
 
-  </header>
+        <button tab="home" (click)="goHome()">
+            <span name="home"></span>
+            <label>Home</label>
+        </button>
 
-  <div slot="bottom">
-      <button tab="account">
-          <span name="heart"></span>
-          <label>Favourites</label>
-      </button>
-
-      <button tab="home" (click)="goHome()">
-          <span name="home"></span>
-          <label>Home</label>
-      </button>
-
-      <button (click)="goToCart()">
-          <span name="cart"></span>
-          <label>Cart</label>
-          <span *ngIf="cartItems.length > 0">{{cartCount}}</span>
-      </button>
-  </div>
+        <button (click)="goToCart()">
+            <span name="cart"></span>
+            <label>Cart</label>
+            <span *ngIf="cartItems.length > 0">{{cartCount}}</span>
+        </button>
+    </div>
 
 </div>
