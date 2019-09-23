@@ -5,7 +5,7 @@ import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { WindowService } from '../window.service';
 import * as firebase from 'firebase';
 import * as $ from 'jquery';
-import { logging } from 'protractor';
+
 
 const passwordRegEx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-z\d$@$!%*?&#].{8,}';
 export class PhoneNumber {
