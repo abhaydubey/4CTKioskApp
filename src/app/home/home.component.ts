@@ -18,11 +18,18 @@ export class HomeComponent implements OnInit {
   searchKey: string = '';
   searchPlaceholder: string;
   selectedVendor=null;
+  cartCount=0;
+  totalPrice=0;
 
   ngOnInit() {
     let that = this;
     this.authService.ajax({ 'REQ_TYPE': 'LOAD_CART_ITEMS' }, function (res) {
       that.cartItems = res;
+      let count = 0;
+      for(let i = 0; i < that.cartItems.length; i++) {
+        count += that.cartItems[i].count;
+      }
+      that.cartCount = count;
     });
 
     this.cafeteriaClick();
@@ -64,20 +71,29 @@ export class HomeComponent implements OnInit {
       that.allItems = res.records;
       that.items = res.records;
       HomeComponent.mapCartCountForItems(that.allItems, that.cartItems);
+      that.totalPrice=0;
+      that.cartCount=0;
+      for (let i = 0; i < that.allItems.length; i++) {
+        that.totalPrice+=(that.allItems[i].itemPrice* that.allItems[i].cartCount);
+        that.cartCount += that.allItems[i].cartCount;
+      }
+      
     });
   }
 
   static mapCartCountForItems(items, cart) {
     let map = {};
+    let count=0;
+    let totalPrice=0;
     for (let i = 0; i < items.length; i++) {
       items[i].cartCount = 0;
       for (let j = 0; j < cart.length; j++) {
         if (items[i].id == cart[j].itemId) {
           items[i].cartCount = cart[j].count;
-          cart[j].item = items[i];
+          cart[j].item = items[i];       
         }
-      }
-    }
+      }     
+    }   
   }
 
   getFullImagePath(i) {
@@ -88,7 +104,15 @@ export class HomeComponent implements OnInit {
     let that = this;
     this.authService.ajax({ 'REQ_TYPE': 'ADD_TO_CART', "itemId": i.id }, function (res) {
       that.cartItems = res;
+      
+     
       HomeComponent.mapCartCountForItems(that.allItems, that.cartItems);
+      that.totalPrice=0;
+      that.cartCount=0;
+      for (let i = 0; i < that.allItems.length; i++) {
+        that.totalPrice+=(that.allItems[i].itemPrice* that.allItems[i].cartCount);
+        that.cartCount += that.allItems[i].cartCount;
+      }
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
     });
   }
@@ -112,7 +136,14 @@ export class HomeComponent implements OnInit {
     }
     this.authService.ajax({ 'REQ_TYPE': 'REMOVE_FROM_CART', "cartItemId": cartItemId }, function (res) {
       that.cartItems = res;
+      
       HomeComponent.mapCartCountForItems(that.allItems, that.cartItems);
+      that.totalPrice=0;
+      that.cartCount=0;
+      for (let i = 0; i < that.allItems.length; i++) {
+        that.totalPrice+=(that.allItems[i].itemPrice* that.allItems[i].cartCount);
+        that.cartCount += that.allItems[i].cartCount;
+      }
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
     });
   }
@@ -143,9 +174,7 @@ export class HomeComponent implements OnInit {
       this.vendors = this.allVendors;
       this.searchKey = '';
       this.searchPlaceholder = 'Search Shops';
-    } else if (this.isInVendors()) {
-      this.title = 'Services';
-    }
+    } 
   }
 
   goToCart() {

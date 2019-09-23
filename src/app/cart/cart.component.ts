@@ -150,7 +150,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     let that = this;
     this.authService.ajax({
       'REQ_TYPE': 'PLACE_ORDER_BY_VENDOR_ID', 
-      "VENDOR_IDS": vendorIds,
+      "VENDOR_IDS": vendorIds.toString(),
       "PAYMENT_REF" : "CASH",
       "PAYMENT_TYPE" : "CASH",
       "AMOUNT":  that.totalPrice,
