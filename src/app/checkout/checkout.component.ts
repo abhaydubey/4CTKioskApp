@@ -119,9 +119,10 @@ export class CheckoutComponent implements OnInit {
 
   login(isCreateUser: boolean) {
     let that=this;
-    const accessToken = btoa(this.phoneNumber.area + '@gmail.com' + ':' + this.phoneNumber.area);
+    //const accessToken = btoa(this.phoneNumber.area + '@gmail.com' + ':' + this.phoneNumber.area);
+    const accessToken = btoa('bharatyadav311819@gmail.com' + ':' + 'Qwerty@123');
     this.authService.login(this.serverURL, accessToken, function (resp) {
-      this.router.navigateByUrl('tabs/tabs/home');
+      that.router.navigateByUrl('tabs/tabs/home');
     }, function (xhr, ajaxOptions, thrownError) {
       if ('401' == xhr.status) {
         if (isCreateUser) {
