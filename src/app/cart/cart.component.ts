@@ -97,6 +97,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       tempGroup[idStr].name = this.cartItems[i].vendor.fullName;
       tempGroup[idStr].id = this.cartItems[i].vendor.id;
       tempGroup[idStr].items.push(this.cartItems[i]);
+      tempGroup[idStr].count += this.cartItems[i].count;
       tempGroup[idStr].total += (this.cartItems[i].item.itemPrice * this.cartItems[i].count);
       tempTotalPrice += (this.cartItems[i].item.itemPrice * this.cartItems[i].count);
     }
@@ -152,6 +153,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       "VENDOR_IDS": vendorIds,
       "PAYMENT_REF" : "CASH",
       "PAYMENT_TYPE" : "CASH",
+      "AMOUNT":  that.totalPrice,
       "NOTES": "COD_ORDER"
     }, function (res) {
 

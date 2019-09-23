@@ -1,3 +1,14 @@
+<div class="topSection" *ngIf="!isInVendors()">
+  <div class="topLeft mr-auto">
+    <h2>{{selectedVendor.fullName}}</h2>
+    <p>{{selectedVendor.building}}</p>
+  </div>
+  <div class="topRight ml-auto">
+    <p class="myrating text-center"><span><img src="../../assets/images/mystar.gif" width="25"></span> 4.5</p>
+    <p class="mtype">Pure Veg</p>
+  </div>
+</div>
+
 <div class="container-fluid">
   <header translucent *ngIf="isInItems() || isInVendors()">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -43,100 +54,38 @@
         </ul>
       </div>
     </div>
-
-    <div class="topSection  " *ngIf="isInServices()">
-      <div class="topLeft mr-auto">
-        <h2>Srushti Veg Restaurant</h2>
-        <p>Meals, Healthy Food, Pulav</p>
-      </div>
-      <div class="topRight ml-auto">
-        <p class="myrating text-center"><span><img src="images/mystar.gif" width="25"></span> 4.5</p>
-        <p class="mtype">Pure Veg</p>
-      </div>
-    </div>
+  </div>
 
 
 
+
+  <div class="c_wrap">
     <div class="row">
-      <div class="itemsection col-sm-6"  *ngFor="let item of items">
+      <div class="itemsection col-sm-6" *ngFor="let item of items">
         <div class="itemWrap">
           <div class="img-wrap"><img src="{{getFullImagePath(item)}}"></div>
           <span class="itemName">{{item.itemName}}</span>
-          <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">&#x20B9; {{item.itemPrice | currency: 'INR'}}</span>
-            
-            <span class="itemAdd ml-auto mt-auto"   *ngIf="!isInCart(item)" (click)="addToCart(item)">Add</span>
+          <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">&#x20B9;
+              {{item.itemPrice | currency: 'INR'}}</span>
+
+            <span class="itemAdd ml-auto mt-auto" *ngIf="!isInCart(item)" (click)="addToCart(item)">Add</span>
 
             <div class="number-input">
-                <button (click)="removeFromCart(item)"></button>
-                <input class="quantity" min="0" name="quantity" value="{{item.cartCount}}" type="number">
-                <button (click)="addToCart(item)" class="plus"></button>
-              </div>
-            
+              <button (click)="removeFromCart(item)"></button>
+              <input class="quantity" min="0" name="quantity" value="{{item.cartCount}}" type="number">
+              <button (click)="addToCart(item)" class="plus"></button>
             </div>
+
+          </div>
         </div>
-      </div>
-      
-    </div>
-  
-
-
-
-  
-
- 
-     
-
-
-
-  <div class="row" *ngIf="isInServices()">
-    <div class="col-12">
-      <div class="card-deck mycard-deck">
-        <div class="card bg-white p-2">
-          <span class="text-black-50" (click)="cafeteriaClick()">
-            <img class="card-img-top rounded" src="../../assets/images/sec-img1.png" alt="Cafeteria">
-            <div class="card-body">
-              <h4 class="card-title text-center">Cafeteria</h4>
-            </div>
-          </span>
-        </div>
-        <div class="card bg-white p-2">
-          <span class="text-black-50" disabled="disabled">
-            <img class="card-img-top rounded" src="../../assets/images/sec-img2.png" alt="Health Bar">
-            <div class="card-body">
-              <h4 class="card-title text-center">Health Bar</h4>
-            </div>
-          </span>
-        </div>
-        <div class="card bg-white p-2">
-          <a href="#" class="text-black-50" disabled="disabled">
-            <img class="card-img-top rounded" src="../../assets/images/sec-img3.png" alt="Cafeteria">
-            <div class="card-body">
-              <h4 class="card-title text-center">Cab Services</h4>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="card-deck mycard-deck">
-        <div class="card bg-white p-2">
-          <a href="#" class="text-black-50" disabled="disabled">
-            <img class="card-img-top rounded" src="../../assets/images/sec-img3.png" alt="starbucks">
-            <div class="card-body">
-              <h4 class="card-title text-center">Starbucks</h4>
-            </div>
-          </a>
-        </div>
-        <div class="card bg-white p-2">
-          <a href="#" class="text-black-50" disabled="disabled">
-            <img class="card-img-top rounded" src="../../assets/images/sec-img3.png" alt="cultfit">
-            <div class="card-body">
-              <h4 class="card-title text-center">Cult Fit</h4>
-            </div>
-          </a>
-        </div>
-
       </div>
 
     </div>
+    <div style="margin:70px" *ngIf="!isInVendors()">
+
+      <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">175</span></div>
+      <div class="myViewCart" (click)="goToCart()">VIEW CART</div>
+    </div>
+
   </div>
-
 </div>

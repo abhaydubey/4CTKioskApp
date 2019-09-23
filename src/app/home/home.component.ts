@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   cartItems: any = [];
   searchKey: string = '';
   searchPlaceholder: string;
+  selectedVendor=null;
 
   ngOnInit() {
     let that = this;
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
 
   selectVendor(v) {
     let that = this;
+    this.selectedVendor=v
     this.title = 'Items';
     this.searchPlaceholder = 'Search Items';
     this.searchKey = '';
@@ -144,5 +146,10 @@ export class HomeComponent implements OnInit {
     } else if (this.isInVendors()) {
       this.title = 'Services';
     }
+  }
+
+  goToCart() {
+    document.dispatchEvent(new CustomEvent('refreshCart', { detail: {} }));
+    this.router.navigateByUrl( 'tabs/tabs/cart' );
   }
 }

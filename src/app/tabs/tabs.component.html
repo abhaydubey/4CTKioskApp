@@ -14,7 +14,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="#" (click)= "logout()">Log Out</a>
+                    <a class="dropdown-item" href="#" (click)="logout()">Log Out</a>
                 </div>
             </div>
         </ul>
@@ -23,7 +23,7 @@
 
 
 
-<header no-border>
+<!-- <header no-border>
     <div mode="ios" color="primary">
         <title>
             Cafeteria
@@ -32,12 +32,9 @@
             <button autoHide="false"></button>
         </button>
     </div>
-</header>
+</header> -->
 
 <router-outlet>
 
 </router-outlet>
 
-
-<div class="itemTotal">{{cartCount}} Items |    <span class="finalPrice">175</span></div>
-<div class="myViewCart"  (click)="goToCart()">VIEW CART</div>
