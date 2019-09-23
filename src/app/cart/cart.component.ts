@@ -2,6 +2,8 @@ import { HomeComponent } from '../home/home.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import * as $ from 'jquery'
+
 //import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -148,6 +150,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.authService.ajax({
       'REQ_TYPE': 'PLACE_ORDER_BY_VENDOR_ID', 
       "VENDOR_IDS": vendorIds,
+      "PAYMENT_REF" : "CASH",
       "PAYMENT_TYPE" : "CASH",
       "NOTES": "COD_ORDER"
     }, function (res) {
@@ -160,15 +163,17 @@ export class CartComponent implements OnInit, AfterViewInit {
       // });
 
       that.refreshCart();
+      $('#exampleModal').modal('hide');
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
 
-       alert("Your Order has been Placed Successfully");
+      $('#ignismyModal').modal('show');
        setInterval(this.goToDashboard(), 10000)
     }, function (error) {
       console.log('error:' + error);
     });
   }
   goToDashboard(){
+    $('#ignismyModal').modal('hide');
     this.router.navigateByUrl("dashboard");
   }
 
