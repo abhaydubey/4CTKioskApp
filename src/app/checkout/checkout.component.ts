@@ -44,24 +44,25 @@ export class CheckoutComponent implements OnInit {
 
   user: any;
 
+  appVerifier: any;
 
 
   ngOnInit() {
     this.windowRef = this.win.windowRef
     this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
 
-    this.windowRef.recaptchaVerifier.render();
-
+    this.appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible',
+      'badge': 'bottomleft'
+    });
   }
 
 
   sendLoginCode() {
 
-    const appVerifier = this.windowRef.recaptchaVerifier;
-
     const num = this.phoneNumber.e164;
 
-    firebase.auth().signInWithPhoneNumber(num, appVerifier)
+    firebase.auth().signInWithPhoneNumber(num, this.appVerifier)
       .then(result => {
 
         this.windowRef.confirmationResult = result;
