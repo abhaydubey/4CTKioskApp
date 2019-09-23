@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  validatePhone(control: FormControl) {
+  validatePhone() {
     let x = this.form.get('phone').value;
     return this.isRegister && x && !isNaN(parseInt(x)) && (x.toString()).length == 10;
   }
@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
     return this.form.get('email');
   }
 
-  passwordMatches(control: FormControl) {
+  passwordMatches() {
     return this.isRegister ? this.form.get('password').value === this.form.get('confirmPassword').value : !!this.form.get('password').value;
   }
 
@@ -137,7 +137,7 @@ export class RegisterComponent implements OnInit {
   }
 
   formValid() {
-    return this.isRegister ? (this.form.valid && this.passwordMatches(null) && this.validatePhone(null)) :
+    return this.isRegister ? (this.form.valid && this.passwordMatches() && this.validatePhone()) :
       (this.email.value && this.password.value);
   }
 
