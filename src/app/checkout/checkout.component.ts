@@ -58,23 +58,27 @@ export class CheckoutComponent implements OnInit {
   }
 
   IsNumberValid(){
-    if(this.phoneNumber.area!='' && this.phoneNumber.area.toString().length<10){
+    if(this.phoneNumber.area=='' || this.phoneNumber.area.toString().length!=10){
 this.IsValidNumber=false;
     }else{
       this.IsValidNumber=true;
     }
+    return this.IsNumberValid;
   }
   sendLoginCode() {
+    if(this.IsNumberValid()){
+      const num = this.phoneNumber.e164;
 
-    const num = this.phoneNumber.e164;
+      firebase.auth().signInWithPhoneNumber(num, this.appVerifier)
+        .then(result => {
+  
+          this.windowRef.confirmationResult = result;
+  
+        })
+        .catch(error => console.log(error));
+    }
 
-    firebase.auth().signInWithPhoneNumber(num, this.appVerifier)
-      .then(result => {
-
-        this.windowRef.confirmationResult = result;
-
-      })
-      .catch(error => console.log(error));
+    
 
   }
 
