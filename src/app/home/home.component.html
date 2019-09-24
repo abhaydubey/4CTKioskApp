@@ -13,7 +13,7 @@
   <header translucent *ngIf="isInItems() || isInVendors()">
     <div class="btn-toolbar row" role="toolbar" aria-label="Toolbar with button groups">
       <div class="btn-group mr-2" role="group" aria-label="First group">
-        <button (click)="customBackButtonClick()"   *ngIf="isInItems()" type="button" class="btn btn-primary" ><span name="arrow-round-back"  >Back</span></button>
+        <button (click)="customBackButtonClick()"   *ngIf="isInItems()" type="button" class="btn btn-primary itemAdd" ><span name="arrow-round-back"  >Back</span></button>
         <div class="col">
           <input class="form-control form-control-lg form-control-borderless" type="search"
             placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
@@ -65,7 +65,7 @@
         <div class="itemWrap">
           <div class="img-wrap"><img src="{{getFullImagePath(item)}}"></div>
           <span class="itemName">{{item.itemName}}</span>
-          <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">&#x20B9;
+          <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">
               {{item.itemPrice | currency: 'INR'}}</span>
 
             <span class="itemAdd ml-auto mt-auto" *ngIf="(!isInCart(item))||item.cartCount==0" (click)="addToCart(item)">Add</span>

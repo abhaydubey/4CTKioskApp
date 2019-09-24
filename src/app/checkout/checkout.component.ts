@@ -9,7 +9,7 @@ import * as $ from 'jquery';
 
 const passwordRegEx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-z\d$@$!%*?&#].{8,}';
 export class PhoneNumber {
-  country: string;
+  country: string="91";
   area: string;
 
   get e164() {
@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
   windowRef: any;
 
   phoneNumber = new PhoneNumber()
-
+  IsValidNumber=true;
   verificationCode: string;
 
   user: any;
@@ -57,7 +57,13 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-
+  IsNumberValid(){
+    if(this.phoneNumber.area!='' && this.phoneNumber.area.toString().length<10){
+this.IsValidNumber=false;
+    }else{
+      this.IsValidNumber=true;
+    }
+  }
   sendLoginCode() {
 
     const num = this.phoneNumber.e164;
@@ -78,7 +84,10 @@ export class CheckoutComponent implements OnInit {
       .then((result: any) => {
         this.login(true);
       })
-      .catch((error: any) => console.log(error, "Incorrect code entered?"));
+      .catch((error: any) =>{ 
+        this.errorMsg=error;
+        console.log(error, "Incorrect code entered?")
+    });
   }
 
 
@@ -92,7 +101,7 @@ export class CheckoutComponent implements OnInit {
 
     $.ajax({
       type: "POST",
-      url: this.serverURL + '/mobile/register',
+      url: this.serverURL + '/register',
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({

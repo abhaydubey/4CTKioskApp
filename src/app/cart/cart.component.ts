@@ -165,11 +165,11 @@ export class CartComponent implements OnInit, AfterViewInit {
       // });
 
       that.refreshCart();
-      $('#exampleModal').modal('hide');
+     
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
 
       $('#ignismyModal').modal('show');
-       setInterval(this.goToDashboard(), 10000)
+       setInterval(()=>that.goToDashboard(), 10000)
     }, function (error) {
       console.log('error:' + error);
     });
@@ -177,6 +177,10 @@ export class CartComponent implements OnInit, AfterViewInit {
   goToDashboard(){
     $('#ignismyModal').modal('hide');
     this.router.navigateByUrl("dashboard");
+  }
+
+  goToShopping(){
+    this.router.navigateByUrl("tabs/tabs/home");
   }
 
   getFullImagePath(i) {

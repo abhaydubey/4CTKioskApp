@@ -57,9 +57,18 @@
 
 </div> 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Checkout
-  </button>
+<div class="row">
+  <div class="col-6">
+    <div  class="btn btn-primary itemTotal" data-toggle="modal" data-target="#exampleModal">
+      Checkout
+    </div>
+  </div>
+  <div class="col-6">
+    <div  class="btn btn-primary itemTotal" (click)="goToShopping()">
+      Continue Shopping
+    </div>
+  </div>
+</div>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,24 +86,16 @@
                 <label class="form-check-label" for="exampleRadios1">
                   Pay By Cash
                 </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="online"  [ngModel]="paymentMode">
-                <label class="form-check-label" for="exampleRadios2">
-                  Online
-                </label>
-              </div>
-             
-         
+              </div>  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="placeOrder()"> Place Order </button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="placeOrder()"> Place Order </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "KAPP": {
+    "KioskApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {

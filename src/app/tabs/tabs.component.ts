@@ -41,7 +41,7 @@ export class TabsComponent implements OnInit {
   logout() {
     this.authService.logout();
     //this.menuCtrl.close('mainMenu');
-    this.router.navigateByUrl( 'register' );
+    this.router.navigateByUrl( "dashboard" );
     // this.goHome();
   }
 
