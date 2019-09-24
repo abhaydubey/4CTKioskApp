@@ -168,16 +168,22 @@ export class CartComponent implements OnInit, AfterViewInit {
       that.refreshCart();
      
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
-      that.showPayment=false;
+      that.payment(false);
       
       setTimeout(()=>{if(document.getElementById("ignismyModalClose")){
         document.getElementById("ignismyModalClose").click();
       } },5000)
-      that.showPayment=true;
+      that.payment(true);
+      that.authService.logout();
+     
        setTimeout(()=>that.goToDashboard(), 10000)
     }, function (error) {
       console.log('error:' + error);
     });
+  }
+
+  payment(isTrue){
+    this.showPayment=isTrue;
   }
   goToDashboard(){
     

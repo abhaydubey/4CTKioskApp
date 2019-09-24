@@ -102,6 +102,7 @@ this.IsValidNumber=false;
   submitForm(IsCreateUser: boolean) {
     let area = this.phoneNumber.area;
     let that = this;
+    let dat=area.toString();
 
     $.ajax({
       type: "POST",
@@ -109,11 +110,11 @@ this.IsValidNumber=false;
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({
-        firstName: area,
-        lastName: area,
-        phone: area,
-        email: area + '@gmail.com',
-        password: area
+        firstName: dat,
+        lastName: dat,
+        phone: dat,
+        email: dat + '@gmail.com',
+        password: dat+'@123'
       }),
       success: function (resp: any) {
         if (resp && resp.error && resp.error.length > 0) {
@@ -121,7 +122,7 @@ this.IsValidNumber=false;
         } else {
           that.errorMsg = "";
           that.isRegister = false;
-          this.login(false);
+          that.login(false);
         }
       }, error: function (xhr, ajaxOptions, thrownError) {
         that.errorMsg = "Registration unsuccessful with error code: " + xhr.status;
@@ -133,8 +134,8 @@ this.IsValidNumber=false;
 
   login(isCreateUser: boolean) {
     let that=this;
-    //const accessToken = btoa(this.phoneNumber.area + '@gmail.com' + ':' + this.phoneNumber.area);
-    const accessToken = btoa('bharatyadav311819@gmail.com' + ':' + 'Qwerty@123');
+    const accessToken = btoa(this.phoneNumber.area + '@gmail.com' + ':' + this.phoneNumber.area+'@123');
+    //const accessToken = btoa('bharatyadav311819@gmail.com' + ':' + 'Qwerty@123');
     this.authService.login(this.serverURL, accessToken, function (resp) {
       that.router.navigateByUrl('tabs/tabs/home');
     }, function (xhr, ajaxOptions, thrownError) {
