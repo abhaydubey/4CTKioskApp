@@ -2,7 +2,7 @@ import { HomeComponent } from '../home/home.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as $ from 'jquery'
+import * as $AB from 'jquery'
 
 //import { ToastController } from '@ionic/angular';
 
@@ -19,6 +19,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   groupedItems = [];
   totalPrice = 0;
   paymentMode="Cash";
+  showPayment=true;
   slideOpts = {
     initialSlide: 0,
     speed: 400
@@ -167,15 +168,20 @@ export class CartComponent implements OnInit, AfterViewInit {
       that.refreshCart();
      
       document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
-
-      $('#ignismyModal').modal('show');
-       setInterval(()=>that.goToDashboard(), 10000)
+      that.showPayment=false;
+      
+      setTimeout(()=>{if(document.getElementById("ignismyModalClose")){
+        document.getElementById("ignismyModalClose").click();
+      } },5000)
+      that.showPayment=true;
+       setTimeout(()=>that.goToDashboard(), 10000)
     }, function (error) {
       console.log('error:' + error);
     });
   }
   goToDashboard(){
-    $('#ignismyModal').modal('hide');
+    
+        
     this.router.navigateByUrl("dashboard");
   }
 

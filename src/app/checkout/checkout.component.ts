@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   IsNumberValid(){
-    if(this.phoneNumber.area=='' || this.phoneNumber.area.toString().length!=10){
+    if( this.phoneNumber.area ==null || this.phoneNumber.area=='' || this.phoneNumber.area.toString().length!=10){
 this.IsValidNumber=false;
     }else{
       this.IsValidNumber=true;

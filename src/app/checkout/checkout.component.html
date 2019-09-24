@@ -27,15 +27,20 @@
     <div id="recaptcha-container"></div>
   
     <button type="button" class="btn btn-light" (click)="sendLoginCode()">SMS Text Login Code</button>
-  
-    <div class="input-group mb-3" *ngIf="windowRef.confirmationResult">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Enter your Verification Code Here</span>
-        </div>           
-        <input type="text" [(ngModel)]="verificationCode">
-        <label>{{errorMsg}}</label> 
+  <br>
+  <hr>
+  <br>
+    <div  *ngIf="windowRef.confirmationResult">
+        <div >
+          <h4 >Enter your Verification Code Here</h4>
+        </div>  
         <div>
-            <button (click)="verifyLoginCode()">Verify</button>
+            <input type="text" [(ngModel)]="verificationCode">
+            <label>{{errorMsg}}</label> 
+        </div>         
+       <br>
+        <div>
+            <button  class="btn btn-light" (click)="verifyLoginCode()">Verify</button>
           </div>  
       </div>
 
