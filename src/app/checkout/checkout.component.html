@@ -8,25 +8,40 @@
 
 
 <div [hidden]="user">
-    <h1>Sign In with Your Phone Number</h1>
+
+    <h2>Sign In with Your Phone Number</h2>
   
-    <label>Phone Number</label><br>
-   <label>+91</label>
-    <input type="text" [(ngModel)]="phoneNumber.area"     class="input" placeholder="" type="number"  
-    maxlength="10" (blur)="IsNumberValid()">
-    <div  *ngIf="!(IsValidNumber||phoneNumber.area=='')" >Valid phone number required</div>
+    <h3>Phone Number</h3><br>
+    <form>
+      <div  class="row">
+        <div class="input-group mb-3 col-md-6">
+            <div class="input-group-prepend">
+              <span class="input-group-text">+91</span>
+            </div>           
+            <input type="text" [(ngModel)]="phoneNumber.area"     class="input form-control" placeholder="" type="number"  
+            maxlength="10" (blur)="IsNumberValid()">
+            <div  *ngIf="!(IsValidNumber||phoneNumber.area=='')" >Valid phone number required</div>
+          </div>
+        </div>
+
+      </form>
+   
+  
+   
     <div id="recaptcha-container"></div>
   
-    <button (click)="sendLoginCode()">SMS Text Login Code</button>
+    <button type="button" class="btn btn-light" (click)="sendLoginCode()">SMS Text Login Code</button>
   
-    <div *ngIf="windowRef.confirmationResult">
-      <hr>
-      <label for="code">Enter your Verification Code Here</label><br>
-      <input type="text" name="code" [(ngModel)]="verificationCode">
-      <label>{{errorMsg}}</label> 
-      <div>
-        <button (click)="verifyLoginCode()">Verify</button>
-      </div>     
-    </div> 
-  </div>  
+    <div class="input-group mb-3" *ngIf="windowRef.confirmationResult">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Enter your Verification Code Here</span>
+        </div>           
+        <input type="text" [(ngModel)]="verificationCode">
+        <label>{{errorMsg}}</label> 
+        <div>
+            <button (click)="verifyLoginCode()">Verify</button>
+          </div>  
+      </div>
+
+   
   

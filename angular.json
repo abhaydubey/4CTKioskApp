@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/KAPP",
+            "outputPath": "dist/KioskApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "KAPP:build"
+            "browserTarget": "KioskApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "KAPP:build:production"
+              "browserTarget": "KioskApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "KAPP:build"
+            "browserTarget": "KioskApp:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "KAPP:serve"
+            "devServerTarget": "KioskApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "KAPP:serve:production"
+              "devServerTarget": "KioskApp:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "KAPP"
+  "defaultProject": "KioskApp"
 }
