@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery'
 
-//import { ToastController } from '@ionic/angular';
-
 @Component({
   selector: 'app-cart',
   templateUrl: 'cart.component.html',
@@ -31,19 +29,7 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   constructor(private authService: AuthenticationService,
     public router: Router) {
-    //public toastController: ToastController) {
-    // this.groupedProducts = [{
-    //   group: 1,
-    //   products: [{
-    //     name: 'Chocolate',
-    //     quantity: 2,
-    //     price: 60
-    //   }, {
-    //     name: 'Burfi',
-    //     quantity: 5,
-    //     price: 20
-    //   }]
-    // }]
+   
   }
 
   ngOnInit() {
@@ -132,14 +118,12 @@ export class CartComponent implements OnInit, AfterViewInit {
     });
   }
 
-  placeOrder() {
-    console.log(this.paymentMode);
+  placeOrder() {    
     let that = this;
     let vendorIds = [];
     for(let index = 0; index < this.groupedItems.length; index++) {
       vendorIds.push(this.groupedItems[index].id);
-    }
-    //alert(vendorIds);
+    }    
     this.placeOrders(vendorIds);
   }
 
@@ -157,39 +141,30 @@ export class CartComponent implements OnInit, AfterViewInit {
       "AMOUNT":  that.totalPrice,
       "NOTES": "COD_ORDER"
     }, function (res) {
-
-      // let toast = that.toastController.create({
-      //   message: 'Your order is placed successfully!!',
-      //   duration: 3000
-      // }).then(toast => {
-      //   toast.present();
-      // });
-
       that.refreshCart();
      
-      document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));
-      that.payment(false);
+      document.dispatchEvent(new CustomEvent('cartChange', { detail: {} }));     
+         
+      
+     
       
       setTimeout(()=>{if(document.getElementById("ignismyModalClose")){
         document.getElementById("ignismyModalClose").click();
-      } },5000)
-      that.payment(true);
-      that.authService.logout();
-     
-       setTimeout(()=>that.goToDashboard(), 10000)
+      } },1000)
+     setTimeout(() => {
+      that.goToThankyou()
+     }, 3000);
+       
     }, function (error) {
-      console.log('error:' + error);
+      
     });
   }
 
-  payment(isTrue){
-    this.showPayment=isTrue;
+  goToThankyou(){       
+    this.router.navigateByUrl("thankyou");
   }
-  goToDashboard(){
-    
-        
-    this.router.navigateByUrl("dashboard");
-  }
+
+  
 
   goToShopping(){
     this.router.navigateByUrl("tabs/tabs/home");
@@ -197,10 +172,6 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   getFullImagePath(i) {
     return i.imagePath ? AuthenticationService.CONTEXT_URL + i.imagePath : 'assets/images/no-image.png';
-  }
-
-  goToPayment(){
-    
   }
 
 }

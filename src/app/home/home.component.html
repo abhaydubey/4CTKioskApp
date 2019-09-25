@@ -12,13 +12,16 @@
 <div class="container-fluid">
   <header translucent *ngIf="isInItems() || isInVendors()">
     <div class="btn-toolbar row" role="toolbar" aria-label="Toolbar with button groups">
-      <div class="btn-group mr-2" role="group" aria-label="First group">
-        <button (click)="customBackButtonClick()"   *ngIf="isInItems()" type="button" class="btn btn-primary itemAdd" ><span name="arrow-round-back"  >Back</span></button>
-        <div class="col">
+      
+         <div class="col  col-sm-12 col-md-6">
           <input class="form-control form-control-lg form-control-borderless" type="search"
             placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
         </div>
-      </div>
+        <div  class="col-sm-12 col-md-6 text-right">
+          <button (click)="customBackButtonClick()"   *ngIf="isInItems()" type="button" class="btn btn-primary itemAdd " ><span name="arrow-round-back text-right"  >Back</span></button>
+         
+        </div>
+      
     </div>
   </header>
 
@@ -84,7 +87,7 @@
     <div style="margin:70px" *ngIf="!isInVendors()">
 
       <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">{{totalPrice}}</span></div>
-      <div class="myViewCart" (click)="goToCart()">VIEW CART</div>
+      <div class="myViewCart " (click)="goToCart()">Go to Cart</div>
     </div>
 
   </div>

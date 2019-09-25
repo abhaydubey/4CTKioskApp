@@ -3,30 +3,42 @@
       <h1>EQUINOX</h1>
   </a>  
 </nav>
+<div class="row">
+<div  class="col">
+
+    <div class="text-right">
+        <button  class="btn btn-light" (click)="gotoDashboard()">Back</button>
+      </div>  
+
+</div>
+
+</div>
 
 
 
 
-<div [hidden]="user">
+<div  class="myownsection"[hidden]="user">
 
     <h2>Sign In with Your Phone Number</h2>
     <br>
     <h3>Phone Number</h3>
     
       <div  class="row">
-        <div class="input-group mb-3 col-md-6">
+        <div class="input-group mb-3 col-md-11">
             <div class="input-group-prepend">
               <span class="input-group-text">+91</span>
             </div>           
             <input type="text" [(ngModel)]="phoneNumber.area"    class="input form-control" placeholder="" type="number"  
             maxlength="10" (blur)="IsNumberValid()">
-            <div  *ngIf="!(IsValidNumber||phoneNumber.area=='')" >Valid phone number required</div>
+            <br>
+           
           </div>
+          <div  *ngIf="!(IsValidNumber||phoneNumber.area=='')" >Valid phone number required</div>
         </div>
    
     <div id="recaptcha-container"></div>
   
-    <button type="button" class="btn btn-light" (click)="sendLoginCode()">SMS Text Login Code</button>
+    <button type="button" class="btn btn-light text-center" (click)="sendLoginCode()">SMS Text Login Code</button>
   <br>
   <hr>
   <br>
@@ -34,12 +46,12 @@
         <div >
           <h4 >Enter your Verification Code Here</h4>
         </div>  
-        <div>
+        <div class="text-center">
             <input type="text" [(ngModel)]="verificationCode">
             <label>{{errorMsg}}</label> 
         </div>         
        <br>
-        <div>
+        <div class="text-center">
             <button  class="btn btn-light" (click)="verifyLoginCode()">Verify</button>
           </div>  
       </div>

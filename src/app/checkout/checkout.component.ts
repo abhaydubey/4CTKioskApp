@@ -156,6 +156,10 @@ this.IsValidNumber=false;
     });
   }
 
+  gotoDashboard(){
+    this.router.navigateByUrl('dashboard');
+  }
+
 
 
 

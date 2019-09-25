@@ -58,13 +58,16 @@
 </div> 
 
 <div class="row">
-  <div class="col-6">
-    <div  class="btn btn-primary itemTotal" data-toggle="modal" data-target="#exampleModal">
-      Checkout
+  <div class="col-md-3 col-lg-2">
+    <div  class="btn btn-success itemTotal" data-toggle="modal" data-target="#exampleModal">
+      Place Order
     </div>
   </div>
-  <div class="col-6">
-    <div  class="btn btn-primary itemTotal" (click)="goToShopping()">
+  <div class="col-md-6 col-lg-8">
+    
+  </div>
+  <div class="col-md-2 col-lg-2">
+    <div  class="btn btn-success itemTotal text-right" (click)="goToShopping()">
       Continue Shopping
     </div>
   </div>
@@ -81,19 +84,12 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="form-check" *ngIf="showPayment">
+            <div class="form-check" >
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Cash"  [ngModel]="paymentMode">
                 <label class="form-check-label" for="exampleRadios1">
                   Pay By Cash
                 </label>
-              </div>  
-              <div class="thank-you-pop"  *ngIf="!showPayment">
-                  <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
-                  <h1>Thank You!</h1>
-                  <p>Your Order  has been Placed</p>
-                  <!-- <h3 class="cupon-pop">Your Id: <span>12345</span></h3> -->
-                  
-                 </div>
+              </div>                
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"  id="ignismyModalClose" data-dismiss="modal">Close</button>
