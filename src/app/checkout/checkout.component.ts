@@ -134,7 +134,7 @@ this.IsValidNumber=false;
 
   login(isCreateUser: boolean) {
     let that=this;
-    const accessToken = btoa(this.phoneNumber.area + '@gmail.com' + ':' + this.phoneNumber.area+'@123');
+    const accessToken = btoa(this.phoneNumber.area.toString() + '@gmail.com' + ':' + this.phoneNumber.area.toString()+'@123');
     //const accessToken = btoa('bharatyadav311819@gmail.com' + ':' + 'Qwerty@123');
     this.authService.login(this.serverURL, accessToken, function (resp) {
       that.router.navigateByUrl('tabs/tabs/home');
