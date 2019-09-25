@@ -2,7 +2,7 @@ import { HomeComponent } from '../home/home.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as $AB from 'jquery'
+import * as $ from 'jquery'
 
 //import { ToastController } from '@ionic/angular';
 
