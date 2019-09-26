@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as firebase from 'firebase';
 
-import { CheckoutComponent } from './checkout.component';
+import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CheckoutComponent
+    component: LoginComponent
   }
 ];
 
@@ -21,9 +21,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),    
     ReactiveFormsModule
   ],
-  declarations: [CheckoutComponent]
+  declarations: [LoginComponent]
 })
-export class CheckoutModule {
+export class LoginModule {
   constructor() {
     const config = {
       apiKey: 'AIzaSyA7IXmV8R9Xa-5LdzXZglBXbxZbrD0C64M',

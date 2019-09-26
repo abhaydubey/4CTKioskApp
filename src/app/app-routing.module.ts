@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule) },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
   { path: 'register', loadChildren: './auth/register/register.module#RegisterModule' },
-  { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'thankyou', loadChildren: './thankyou/thankyou.module#ThankyouModule' }
 ];
 

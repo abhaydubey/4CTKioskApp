@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" >
       <h1>EQUINOX</h1>
   </a>  
 </nav>
@@ -28,7 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">+91</span>
             </div>           
-            <input type="text" [(ngModel)]="phoneNumber.area"    class="input form-control" placeholder="" type="number"  
+            <input type="number" [(ngModel)]="phoneNumber.area"    class="input form-control" placeholder="" type="number"  
             maxlength="10" (blur)="IsNumberValid()">
             <br>
            
@@ -38,16 +38,16 @@
    
     <div id="recaptcha-container"></div>
   
-    <button type="button" class="btn btn-light text-center" (click)="sendLoginCode()">SMS Text Login Code</button>
+    <button type="button" class="btn btn-light text-center" (click)="sendLoginCode()">Send Login Code</button>
   <br>
   <hr>
   <br>
     <div  *ngIf="windowRef.confirmationResult">
         <div >
-          <h4 >Enter your Verification Code Here</h4>
+          <h4 >Enter Verification Code</h4>
         </div>  
         <div class="text-center">
-            <input type="text" [(ngModel)]="verificationCode">
+            <input type="number" [(ngModel)]="verificationCode">
             <label>{{errorMsg}}</label> 
         </div>         
        <br>

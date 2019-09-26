@@ -19,11 +19,11 @@ export class PhoneNumber {
 
 }
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class CheckoutComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService, private router: Router, private win: WindowService) {
   }
@@ -83,8 +83,10 @@ this.IsValidNumber=false;
   }
 
   verifyLoginCode() {
-    this.windowRef.confirmationResult
-      .confirm(this.verificationCode)
+    if(this.verificationCode!==undefined && this.verificationCode!=null  && this.verificationCode!='')
+    {
+      this.windowRef.confirmationResult
+      .confirm(this.verificationCode.toString())
       .then((result: any) => {
         this.login(true);
       })
@@ -92,6 +94,8 @@ this.IsValidNumber=false;
         this.errorMsg=error;
         console.log(error, "Incorrect code entered?")
     });
+    }
+   
   }
 
 
