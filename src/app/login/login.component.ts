@@ -66,7 +66,7 @@ this.IsValidNumber=false;
     return this.IsNumberValid;
   }
   sendLoginCode() {
-    if(this.IsNumberValid()){
+    if(this.phoneNumber.area!=undefined && this.IsNumberValid()){
       const num = this.phoneNumber.e164;
 
       firebase.auth().signInWithPhoneNumber(num, this.appVerifier)
