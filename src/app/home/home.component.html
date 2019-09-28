@@ -35,10 +35,28 @@
 
             <span><img class="rounded" src="../../assets/images/sec-img1.png" alt="Food Paradise"></span>
             <div class="media-body" (click)="selectVendor(v)">
-              <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
-              <h2 class="list-sub-head">{{v.building}}</h2>
+
+                <div class="row">
+                    <div  class="col-md-6">
+                        <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
+                    </div>
+                    <div  class="col-md-6">
+                        <h2 class="list-heading">veg/non veg/halal/ jain</h2>
+                      </div>
+                    
+                    </div>
+                    
+                    <div class="row">
+                        <div  class="col-md-6">
+                            <h2 class="list-sub-head">{{v.building}}</h2>
+                        </div>
+                        <div  class="col-md-6">
+                            <h3 class="list-sub-head">breakfast /lunch/dinner</h3>
+                          </div>
+                        
+                        </div>              
               <h3 class="text-center rating"><span class="float-left">
-                  <i class="fa fa-star"></i> 4.3</span><span>23
+                  ★ 4.3</span><span>23
                   mins</span></h3>
             </div>
 
@@ -75,8 +93,8 @@
     </div>
     <div style="margin:70px" *ngIf="!isInVendors()">
 
-      <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">{{totalPrice}}</span></div>
-      <div class="myViewCart " (click)="goToCart()">Go to Cart</div>
+      <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">{{totalPrice | currency: 'INR'}}</span></div>
+      <div class="myViewCart " *ngIf="totalPrice>0" (click)="goToCart()">Go to Cart</div>
     </div>
 
   </div>
