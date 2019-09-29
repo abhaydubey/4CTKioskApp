@@ -4,7 +4,10 @@
     <p>{{selectedVendor.building}}</p>
   </div>
   <div class="topRight ml-auto">
-    <p class="myrating text-center"><span><img src="../../assets/images/mystar.gif" width="25"></span> 4.5</p>
+    <p class="myrating text-center">
+      <span>
+        <img src="../../assets/images/mystar.gif" width="25">
+      </span> 4.5</p>
     <p class="mtype">Pure Veg</p>
   </div>
 </div>
@@ -12,86 +15,53 @@
 <div class="container-fluid">
   <header translucent *ngIf="isInItems() || isInVendors()">
     <div class="btn-toolbar row" role="toolbar" aria-label="Toolbar with button groups">
-      
-         <div class="col  col-sm-12 col-md-6">
-          <input class="form-control form-control-lg form-control-borderless" type="search"
-            placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
-        </div>
-        <div  class="col-sm-12 col-md-6 text-right">
-          <button (click)="customBackButtonClick()"   *ngIf="isInItems()" type="button" class="btn btn-primary itemAdd " ><span name="arrow-round-back text-right"  >Back</span></button>
-         
-        </div>
-      
+      <div class="col  col-sm-12 col-md-6">
+        <input class="form-control form-control-lg form-control-borderless" type="search"
+          placeholder="{{searchPlaceholder}}" [(ngModel)]="searchKey" (input)="filterItems($event)">
+      </div>
+      <div class="col-sm-12 col-md-6 text-right">
+        <button (click)="customBackButtonClick()" *ngIf="isInItems()" type="button"
+          class="btn btn-primary itemAdd "><span name="arrow-round-back text-right">Back</span></button>
+      </div>
     </div>
   </header>
 
-
   <div class="content">
-
-    <div class="row" *ngIf="isInVendors()">
+       <div class="row" *ngIf="isInVendors()">
+        <div class="col-12" *ngIf="cartCount>0">
+            <h1 style="background-color: wheat">To view all vendors, Please empty the cart from below vendor</h1>
+          </div>
       <div class="col-12">
         <ul class="list-unstyled mt-4 mb-4 list-menu">
           <li class="media my-3" *ngFor="let v of vendors;">
-
             <span><img class="rounded" src="../../assets/images/sec-img1.png" alt="Food Paradise"></span>
             <div class="media-body" (click)="selectVendor(v)">
-
-
-                <div class="row">
-                    <div  class="col-md-6">
-                        <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
-                        <h2 class="list-sub-head">{{v.building}}</h2>
-                    </div>
-                    <div  class="col-md-3">
-                        <h2 class="list-heading">&#9989; Veg</h2>
-                        <h2 class="list-heading">&#10060; Non veg</h2>
-                        <h2 class="list-heading">&#10060; Halal</h2>
-                        <h2 class="list-heading">&#9989; Jain</h2>
-                      </div>
-
-                      <div  class="col-md-3">
-                          <h3 class="list-sub-head">&#9989; Breakfast </h3>
-                          <h3 class="list-sub-head">&#9989; Lunch</h3>
-                          <h3 class="list-sub-head">&#10060; Dinner</h3>
-                        </div>                    
-                    </div>
-
-
-
-
-                <!-- <div class="row">
-                    <div  class="col-md-6">
-                        <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
-                    </div>
-                    <div  class="col-md-6">
-                        <h2 class="list-heading">veg/non veg/halal/ jain</h2>
-                      </div>
-                    
-                    </div>
-                    
-                    <div class="row">
-                        <div  class="col-md-6">
-                            <h2 class="list-sub-head">{{v.building}}</h2>
-                        </div>
-                        <div  class="col-md-6">
-                            <h3 class="list-sub-head">breakfast /lunch/dinner</h3>
-                          </div>
-                        
-                        </div>               -->
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="list-heading"><span><strong>{{v.fullName}}</strong></span></h1>
+                  <h2 class="list-sub-head">{{v.building}}</h2>
+                </div>
+                <div class="col-md-3">
+                  <h2 class="list-heading">&#9989; Veg</h2>
+                  <h2 class="list-heading">&#10060; Non veg</h2>
+                  <h2 class="list-heading">&#10060; Halal</h2>
+                  <h2 class="list-heading">&#9989; Jain</h2>
+                </div>
+                <div class="col-md-3">
+                  <h3 class="list-sub-head">&#9989; Breakfast </h3>
+                  <h3 class="list-sub-head">&#9989; Lunch</h3>
+                  <h3 class="list-sub-head">&#10060; Dinner</h3>
+                </div>
+              </div>
               <h3 class="text-center rating"><span class="float-left">
                   ★ 4.3</span><span>23
                   mins</span></h3>
             </div>
-
           </li>
         </ul>
       </div>
     </div>
   </div>
-
-
-
-
   <div class="c_wrap">
     <div class="row">
       <div class="itemsection col-sm-6" *ngFor="let item of items">
@@ -100,25 +70,21 @@
           <span class="itemName">{{item.itemName}}</span>
           <div class="itemBottom"><span class="itemPrice mr-auto mt-auto">
               {{item.itemPrice | currency: 'INR'}}</span>
-
-            <span class="itemAdd ml-auto mt-auto" *ngIf="(!isInCart(item))||item.cartCount==0" (click)="addToCart(item)">Add</span>
-
-            <div class="number-input"  *ngIf="isInCart(item)">
+            <span class="itemAdd ml-auto mt-auto" *ngIf="(!isInCart(item))||item.cartCount==0"
+              (click)="addToCart(item)">Add</span>
+            <div class="number-input" *ngIf="isInCart(item)">
               <button (click)="removeFromCart(item)"></button>
-              <input class="quantity" min="0" name="quantity" value="{{item.cartCount}}" type="number">
+              <input class="quantity" min="0" name="quantity" value="{{item.cartCount}}" type="number" disabled>
               <button (click)="addToCart(item)" class="plus"></button>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
     <div style="margin:70px" *ngIf="!isInVendors()">
-
-      <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">{{totalPrice | currency: 'INR'}}</span></div>
+      <div class="itemTotal">{{cartCount}} Items | <span class="finalPrice">{{totalPrice | currency: 'INR'}}</span>
+      </div>
       <div class="myViewCart " *ngIf="totalPrice>0" (click)="goToCart()">Go to Cart</div>
     </div>
-
   </div>
 </div>

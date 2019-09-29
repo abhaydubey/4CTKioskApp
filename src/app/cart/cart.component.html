@@ -1,4 +1,4 @@
- <div *ngIf="groupedItems.length > 0">
+ <div  style="min-height:700px;">
  <div class="c_wrap "  *ngFor="let group of groupedItems;">
   <div class="row myrow py-4 "    >
     <div class="overlay"></div>
@@ -23,7 +23,7 @@
           <div class="col-md-3 mymiddlecol">
             <div class="number-input">
               <button (click)="removeFromCart(cartItem.item)"></button>
-              <input class="quantity" min="0" name="quantity" value="{{cartItem.count}}" type="number">
+              <input class="quantity" min="0" name="quantity" value="{{cartItem.count}}" type="number" disabled>
               <button (click)="addToCart(cartItem.item)" class="plus"></button>
             </div>
           </div> 
@@ -52,7 +52,14 @@
   </div>
 
 </div> 
+<div *ngIf="groupedItems.length == 0">
+  <div  class="col-md-12">
+    <h1>There is no item in your Cart.    </h1>
+    <h1>Tap to "Continue Shopping" to see vendor list.   </h1>
 
+  </div>
+</div>
+ </div>
 <div class="row"> 
   <div class="col-md-2 col-lg-2">
     <div  class="btn btn-info itemTotal text-right" (click)="goToShopping()">
@@ -62,7 +69,7 @@
   <div class="col-md-6 col-lg-8">
     
     </div>
-    <div class="col-md-3 col-lg-2">
+    <div class="col-md-3 col-lg-2"  *ngIf="totalPrice>0">
         <div  class="btn btn-info itemTotal float-right"  style="right:25px" data-toggle="modal" data-target="#exampleModal">
           Place Order
         </div>
@@ -94,7 +101,7 @@
       </div>
     </div>
   </div>
-</div> 
+
 
 
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" >
-      <h1>EQUINOX</h1>
+      <h1>Touch to begin</h1>
   </a>  
 </nav>
 <div class="row">
@@ -42,7 +42,7 @@
   <br>
   <hr>
   <br>
-    <div  *ngIf="windowRef.confirmationResult">
+    <div  *ngIf="windowRef.confirmationResult && phoneNumber.area!=undefined && IsNumberValid()">
         <div >
           <h4 >Enter Verification Code</h4>
         </div>  
