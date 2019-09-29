@@ -8,17 +8,7 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsComponent,
     children: [
-      {
-        path: 'account',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../account/account.module').then(m => m.AccountModule)
-          }
-        ]
-      },
-      {
+     {
         path: 'home',
         children: [
           {

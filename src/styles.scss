@@ -45,7 +45,7 @@ nav{
 .rating{
 	border-top:2px solid #828486;
 	border-bottom:4px solid #c3d3e9;
-	margin-top:104px;
+	margin-top:20px;
 	padding:20px;}
 	
 	
@@ -9425,5 +9425,11 @@ a.text-dark:focus,a.text-dark:hover {
     transform:translate(-50%, -50%);
        
     }
+  }
+  @media (min-width: 992px){
+.navbar-expand-lcg {
+    flex-flow: column-reverse;
+    justify-content: flex-end;
+}
   }
   

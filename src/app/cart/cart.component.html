@@ -53,20 +53,20 @@
 
 </div> 
 
-<div class="row">
-  <div class="col-md-3 col-lg-2">
-    <div  class="btn btn-success itemTotal" data-toggle="modal" data-target="#exampleModal">
-      Place Order
+<div class="row"> 
+  <div class="col-md-2 col-lg-2">
+    <div  class="btn btn-info itemTotal text-right" (click)="goToShopping()">
+      Continue Shopping
     </div>
   </div>
   <div class="col-md-6 col-lg-8">
     
-  </div>
-  <div class="col-md-2 col-lg-2">
-    <div  class="btn btn-success itemTotal text-right" (click)="goToShopping()">
-      Continue Shopping
     </div>
-  </div>
+    <div class="col-md-3 col-lg-2">
+        <div  class="btn btn-info itemTotal float-right"  style="right:25px" data-toggle="modal" data-target="#exampleModal">
+          Place Order
+        </div>
+      </div>
 </div>
   
   <!-- Modal -->
@@ -83,7 +83,7 @@
             <div class="form-check" >
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Cash"  [ngModel]="paymentMode">
                 <label class="form-check-label" for="exampleRadios1">
-                  Pay By cash to vendor
+                  Pay by cash to vendor
                 </label>
               </div>                
         </div>

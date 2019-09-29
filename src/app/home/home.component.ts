@@ -30,9 +30,8 @@ export class HomeComponent implements OnInit {
         count += that.cartItems[i].count;
       }
       that.cartCount = count;
-    });
-
-    this.cafeteriaClick();
+      that.cafeteriaClick();
+    });   
   }
 
   constructor(private authService: AuthenticationService, private router: Router) {
@@ -51,13 +50,17 @@ export class HomeComponent implements OnInit {
     return this.title == 'Items';
   }
 
+
+
   cafeteriaClick() {
     let that = this;
     this.title = 'Cafeteria';
     this.searchPlaceholder = 'Search Shops';
     this.authService.ajax({ 'REQ_TYPE': 'VENDOR_LIST' }, function (res) {
       that.allVendors = res;
-      that.vendors = res;
+      that.vendors = res.filter((x)=>{
+        return (that.cartCount==0 || (that.cartCount>0 &&  x.id==that.cartItems[0].vendorId))
+       });
     });
   }
 
@@ -171,7 +174,10 @@ export class HomeComponent implements OnInit {
       this.items = [];
       this.allItems = [];
       this.title = 'Cafeteria';
-      this.vendors = this.allVendors;
+      let that=this;
+      this.vendors = this.allVendors.filter((x)=>{
+       return (that.cartCount==0 || (that.cartCount>0 &&  x.id==that.cartItems[0].vendorId))
+      });
       this.searchKey = '';
       this.searchPlaceholder = 'Search Shops';
     } 
